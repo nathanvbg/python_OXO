@@ -6,19 +6,30 @@
 #    By: naverbru <naverbru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 13:01:16 by naverbru          #+#    #+#              #
-#    Updated: 2022/07/05 14:30:37 by naverbru         ###   ########.fr        #
+#    Updated: 2022/07/05 14:47:03 by naverbru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-def player_input(table, str, sign):
-    print("c'est a votre tour " + str)
+import random
+
+def player_input(table):
+    print("your turn player one")
     entree = list(map(int, input().split()))
     while (len(entree) != 2) or (entree[0] > 2) or (entree[0] < 0) or (entree[1] > 2) or (entree[1] < 0) or (table[entree[0]][entree[1]] != "_") :
-        print("invalid input, it's still your turn " + str)
+        print("invalid input, it's still your turn player 1")
         entree = list(map(int, input().split()))
-    table[entree[0]][entree[1]] = sign
+    table[entree[0]][entree[1]] = 'O'
     print_table(table)
 
+def computer_input(table):
+    print("your turn player two")
+    while True:
+        row = random.randint(0,2)
+        line = random.randint(0,2)
+        if table[line][row] == '_' :
+            table[line][row] = 'X'
+            print_table(table)
+            break
 
 def create_table():
     table = [['_','_','_'], ['_','_','_'], ['_','_','_']]
@@ -51,10 +62,10 @@ def play():
     table = create_table()
     print_table(table)
     while True :
-        player_input(table, "joueur 1", "O")
+        player_input(table)
         if (is_finished(table, "joueur 1") == 1) :
             break
-        player_input(table, "joueur 2", "X")
+        computer_input(table)
         if (is_finished(table, "joueur 2") == 1) :
             break
         
