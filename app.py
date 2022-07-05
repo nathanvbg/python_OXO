@@ -6,7 +6,7 @@
 #    By: naverbru <naverbru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 13:01:16 by naverbru          #+#    #+#              #
-#    Updated: 2022/07/05 13:06:40 by naverbru         ###   ########.fr        #
+#    Updated: 2022/07/05 14:30:37 by naverbru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,9 @@ def is_finished(table, str):
     (table[0][1] != '_') and (table[0][1] == table[1][1] == table[2][1]) or
     (table[0][2] != '_') and (table[0][2] == table[1][2] == table[2][2])) :
         print("oyeee, " + str + " a gagné!")
+        return(1)
+    elif "_" not in table[0] and "_" not in table[1] and "_" not in table[2] :
+        print("tie")
         return(1)
     return (0)
 
